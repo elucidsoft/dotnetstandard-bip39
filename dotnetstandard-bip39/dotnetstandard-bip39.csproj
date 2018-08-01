@@ -3,6 +3,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>7.2</LangVersion>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\package\lib\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>..\package\lib\</OutputPath>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Update="wordlists\chinese_simplified.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
