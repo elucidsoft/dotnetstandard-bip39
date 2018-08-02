@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices.ComTypes;
 using System.Security.Cryptography;
 using System.Text;
@@ -32,6 +33,8 @@ namespace dotnetstandard_bip39
         private const string InvalidMnemonic = "Invalid mnemonic";
         private const string InvalidEntropy = "Invalid entropy";
         private const string InvalidChecksum = "Invalid mnemonic checksum";
+
+        public static object Properties { get; private set; }
 
         private string lPad(string str, string padString, int length)
         {
@@ -214,18 +217,22 @@ namespace dotnetstandard_bip39
         {
             var wordlists = new Dictionary<string, string>
             {
-                {BIP39Wordlist.ChineseSimplified.ToString(), "chinese_simplified.txt"},
-                {BIP39Wordlist.ChineseTraditional.ToString(), "chinese_traditional.txt"},
-                {BIP39Wordlist.English.ToString(), "english.txt"},
-                {BIP39Wordlist.French.ToString(), "french.txt"},
-                {BIP39Wordlist.Italian.ToString(), "italian.txt"},
-                {BIP39Wordlist.Japanese.ToString(), "japanese.txt"},
-                {BIP39Wordlist.Korean.ToString(), "korean.txt"},
-                {BIP39Wordlist.Spanish.ToString(), "spanish.txt"}
+                {BIP39Wordlist.ChineseSimplified.ToString(), "chinese_simplified"},
+                {BIP39Wordlist.ChineseTraditional.ToString(), "chinese_traditional"},
+                {BIP39Wordlist.English.ToString(), "english"},
+                {BIP39Wordlist.French.ToString(), "french"},
+                {BIP39Wordlist.Italian.ToString(), "italian"},
+                {BIP39Wordlist.Japanese.ToString(), "japanese"},
+                {BIP39Wordlist.Korean.ToString(), "korean"},
+                {BIP39Wordlist.Spanish.ToString(), "spanish"}
             };
 
             var wordListFile = wordlists[wordlist.ToString()];
-            return File.ReadAllLines(Path.Combine(@"wordlists\", wordListFile), Encoding.UTF8);
+
+            var wordListResults = Resources.ResourceManager.GetString(wordListFile)
+                .Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+
+            return wordListResults;
         }
 
     }
