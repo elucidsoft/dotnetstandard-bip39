@@ -200,7 +200,7 @@ namespace dotnetstandard_bip39
             return string.Join("", hash.Select(h => lPad(Convert.ToString(h, 2), "0", 8)));
         }
 
-        private bool ValidateMnemonic(string mnemonic, BIP39Wordlist wordlist)
+        public bool ValidateMnemonic(string mnemonic, BIP39Wordlist wordlist)
         {
             try
             {

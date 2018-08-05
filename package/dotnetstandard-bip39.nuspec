@@ -5,7 +5,7 @@
         <id>dotnetstandard-bip39</id>
 
         <!-- The package version number that is used when resolving dependencies -->
-        <version>1.0.1</version>
+        <version>1.0.2</version>
 
         <!-- Authors contain text that appears directly on the gallery -->
         <authors>Eric Malamisura</authors>
@@ -31,7 +31,7 @@
 
         <!-- Any details about this particular release -->
         <releaseNotes>
-		- Fix for path not found for the mnemonic dictionaries in Nuget package.
+		- Made Validate Mnemonic public so you can use it.
 	</releaseNotes>
 
         <!-- 
