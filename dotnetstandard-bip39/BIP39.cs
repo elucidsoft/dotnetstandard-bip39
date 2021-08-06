@@ -230,7 +230,7 @@ namespace dotnetstandard_bip39
             var wordListFile = wordlists[wordlist.ToString()];
 
             var wordListResults = Resources.ResourceManager.GetString(wordListFile)
-                .Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                .Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 
             return wordListResults;
         }
